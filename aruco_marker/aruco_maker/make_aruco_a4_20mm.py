@@ -1,6 +1,6 @@
-"""수업용: ArUco 마커 ID 0 과 ID 1 을 각각 30장씩 A4 2쪽 PDF로 만든다.
+"""수업용: ArUco 마커 ID 0~4 를 각각 30장씩 A4 5쪽 PDF로 만든다.
 
-1쪽 = ID 0 × 30, 2쪽 = ID 1 × 30. 사전은 DICT_4X4_50, 검은 테두리 기준 한 변 20mm.
+한 쪽에 한 ID: 1쪽 = ID 0 × 30, 2쪽 = ID 1 × 30, … 5쪽 = ID 4 × 30. 사전은 DICT_4X4_50, 검은 테두리 기준 한 변 20mm.
 
     pip install opencv-contrib-python pillow
     python make_aruco_a4_20mm.py
@@ -14,13 +14,15 @@ from PIL import Image, ImageDraw, ImageFont
 
 DICT = cv2.aruco.DICT_4X4_50  # wikidocs 6-12 예제와 같은 사전
 STUDENTS = 30
-IDS = [0] * STUDENTS + [1] * STUDENTS
+# 5쪽 = ID 0~4 각 30장
+MARKER_IDS = range(5)        # ID 0~4
+IDS = [i for i in MARKER_IDS for _ in range(STUDENTS)]
 MARKER_MM = 20
-OUT = "aruco_id0_id1_x30_20mm_A4.pdf"
+OUT = "aruco_id0-4_x30_20mm_A4.pdf"
 
 PX_PER_MM = 24                # 609.6 dpi: A4·20mm·마커 한 칸(20/6mm)이 모두 정수 픽셀로 떨어진다
 PAGE_MM = (210, 297)
-GAP_MM = 20                   # 마커 사이 흰 여백. 가운데를 자르면 마커 둘레에 10mm(3칸) 흰 테두리가 남는다
+GAP_MM = 10                   # 마커 사이 흰 여백. 가운데를 자르면 마커 둘레에 5mm(3칸) 흰 테두리가 남는다
 LABEL_MM = 5
 COLS, ROWS = 5, 6             # 페이지당 30개 = 한 ID 를 한 페이지에
 TOP_MM = 15
@@ -79,4 +81,4 @@ for p in range(0, len(IDS), per_page):
     pages.append(page.convert("1", dither=Image.Dither.NONE))  # 1비트 → PDF 에 무손실(CCITT)로 들어감
 
 pages[0].save(OUT, save_all=True, append_images=pages[1:], resolution=PX_PER_MM * 25.4)
-print(f"{OUT}: {len(pages)}쪽, ID 0·1 각 {STUDENTS}장, 한 변 {MARKER_MM}mm")
+print(f"{OUT}: {len(pages)}쪽, ID 0~{MARKER_IDS[-1]} 각 {STUDENTS}장, 한 변 {MARKER_MM}mm")

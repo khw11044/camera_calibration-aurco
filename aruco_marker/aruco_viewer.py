@@ -5,7 +5,7 @@
 (ZMQ 5556, 1) front  2) wrist 고르기) 잡힌 마커마다 테두리 · 사전 · ID 를 그린다.
 캘리브레이션 결과(--robot)를 주면 좌표축과 카메라에서 마커 중심까지 거리도 그린다.
 
-기본값은 수업용 마커 (aruco_maker/make_aruco_a4_20mm.py): DICT_4X4_50, ID 0 · 1, 한 변 20 mm.
+기본값은 수업용 마커 (aruco_maker/make_aruco_a4_20mm.py): DICT_4X4_50, ID 0~4, 한 변 20 mm.
 
 준비: 캘리브레이션 도구와 같다 — 로봇은 웹 오퍼레이터에서 브링업 시작 (카메라 켬), PC 는 sudo apt install python3-zmq
 
@@ -50,7 +50,7 @@ from calibrate_camera import (  # noqa: E402
 AUTO_DICTS = (
 	'4X4_1000', '5X5_1000', '6X6_1000', '7X7_1000', 'ARUCO_ORIGINAL',
 	'APRILTAG_16h5', 'APRILTAG_25h9', 'APRILTAG_36h10', 'APRILTAG_36h11')
-# 수업용 마커 (aruco_maker/make_aruco_a4_20mm.py): DICT_4X4_50, ID 0 · 1, 검은 테두리 바깥 한 변 20 mm
+# 수업용 마커 (aruco_maker/make_aruco_a4_20mm.py): DICT_4X4_50, ID 0~4, 검은 테두리 바깥 한 변 20 mm
 DEFAULT_DICT = '4X4_50'
 DEFAULT_MARKER_MM = 20.0
 LABEL_COLOR = (0, 255, 0)

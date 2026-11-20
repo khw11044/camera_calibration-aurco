@@ -67,10 +67,10 @@ python aruco_marker/test_aruco_viewer.py
 
 ```bash
 cd aruco_marker/aruco_maker
-python make_aruco_a4_20mm.py     # → aruco_id0_id1_x30_20mm_A4.pdf
+python make_aruco_a4_20mm.py     # → aruco_id0-4_x30_20mm_A4.pdf
 ```
 
-- A4 2쪽: 1쪽 = ID 0 × 30장, 2쪽 = ID 1 × 30장. 사전 `DICT_4X4_50`, 검은 테두리 바깥 한 변 **20 mm**
+- A4 5쪽: 한 쪽에 한 ID 씩 30장 (1쪽 = ID 0, 2쪽 = ID 1, … 5쪽 = ID 4). 사전 `DICT_4X4_50`, 검은 테두리 바깥 한 변 **20 mm**
 - **실제 크기(100%)로 인쇄한다.** "페이지에 맞춤"이면 마커가 작아져 거리가 틀린다. 인쇄 후 페이지 아래 **100 mm 막대**를 자로 잰다
 - 마커 사이를 가운데로 자르면 둘레에 흰 여백이 남는다. 흰 여백이 있어야 잘 잡힌다
 
