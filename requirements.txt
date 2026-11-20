@@ -1,0 +1,6 @@
+# camera_calibration · aruco_marker 공용 (aruco_viewer.py 가 이 폴더 코드를 가져다 쓴다)
+# Python 3.10 이상
+opencv-python>=4.7   # cv2.aruco 포함, 영상 창(Qt) 포함
+numpy
+pyyaml
+pyzmq
